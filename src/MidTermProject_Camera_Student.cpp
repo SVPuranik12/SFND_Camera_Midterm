@@ -82,7 +82,7 @@ int main(int argc, const char *argv[])
 
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
-        string detectorType = "BRISK"; // <-- User input for selection of detector
+        string detectorType = "FAST"; // <-- User input for selection of detector
         DetType = detectorType;
         
         //// STUDENT ASSIGNMENT
@@ -168,7 +168,7 @@ int main(int argc, const char *argv[])
         //// -> BRIEF, ORB, FREAK, AKAZE, SIFT
 
         cv::Mat descriptors;
-        string descriptorType = "ORB"; // BRIEF, ORB, FREAK, AKAZE, SIFT
+        string descriptorType = "BRIEF"; //BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
         DescType = descriptorType;
         double T = (double)cv::getTickCount();
         descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
@@ -231,6 +231,6 @@ int main(int argc, const char *argv[])
     } // eof loop over all images
     double TotalTime =  DetTime + DescTime;
     cout << "Total Matched Keypoints for " << DetType << "+" << DescType << " is = " << matchedKeypoints << endl;
-    cout << "Total Execution time for    " << DetType << "+" << DescType << " is (in ms)= " << TotalTime << endl;
+    cout << "Total Execution time for    " << DetType << "+" << DescType << " is (in ms)= " << TotalTime*1000 << endl;
     return 0;
 }
